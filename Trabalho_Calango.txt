@@ -1,0 +1,270 @@
+algoritmo Calango_Food;
+// Síntese: Aluno-Yuri Machado,  Matricula: 221008552;
+//  Objetivo: Desenvolver um programa capaz de otimizar, com base nas escolha e preferencia do usuario, a experciencia em um restaurante;
+//  Entrada :Numero de pessoas, Nome do usuario e as preferencias;
+//  Saída   :Nome do usuario e o total a ser pego pelo mesmo;
+
+
+principal
+	// Declarações
+	inteiro numPessoas, i, num, x;
+	logico op;
+	inteiro pref, contPes;
+	real valorPrato, precF, y;
+	texto nome;
+
+	// Instruções
+	contPes = 0;
+	y = 0;
+	valorPrato= 0;
+	num = 0;
+	x=aleatorio(15);
+
+	escreval("Seja Bem vindo ao Restaurante mais amado dos Programadores");
+	escreval("----------------------------------------------------------------------"); escreval("----------------------------------------------------------------------");
+	escreval("                             CALANGO FOOD");
+	escreval("----------------------------------------------------------------------"); escreval("----------------------------------------------------------------------");
+	escreval("Digite o número de Pessoas");
+	leia(numPessoas);
+	se(numPessoas <= 0)entao
+		escreval("Não a ninguem para ser atendido");
+	fimSe
+	se(numPessoas > 8)entao
+		escreval("Número de clientes excede o número máximo permitido");
+	fimSe
+
+	escreval("Sintam-se à vontade Mesa-",x);
+	faca	
+		escreval("----------------------------------------------------------------------"); 
+		escreval("Digite seu Nome");
+		leia(nome);
+		op = falso;
+		escreval("Informem suas preferencias");
+		escreval("1-Vegetariano");
+		escreval("2-Sem Preferencias");
+		leia(pref);
+		se(pref != 1 e pref != 2)entao
+			escreval("Selecione uma opçao valida");
+		senao
+			se(pref == 1)entao
+				op = verdadeiro;
+			fimSe
+			se(op == verdadeiro)entao
+				pratoVeg (x, contPes, valorPrato, y, nome);
+			senao
+				menu(x,contPes,valorPrato, y, nome);
+			fimSe
+		fimSe
+		num = num + 1;
+	enquanto(num < numPessoas);
+fimPrincipal
+
+procedimento menu(inteiro x,inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro intol, intolTip;
+
+	escreval("Possui algum tipo de Intolerancia:");
+	escreval("1-Sim");
+	escreval("2-Não");
+	leia (intol);
+	se(intol != 1 e intol != 2)entao
+		escreval("Selecione uma opçao valida");
+	senao
+		se(intol == 1)entao
+			escreval("Que tipo de Intolerancia:");
+			escreval("1-Intolerancia a lactose");
+			escreval("2-Intolerancia a Frutos do Mar");
+			escreval("3-Intolerancia a Glutem");
+			escreval("4-Nenhuma da Opçoes acima");
+			leia(intolTip);
+			escolha(intolTip)
+			caso 1
+				pratoLac (x, contPes, valorPrato, y, nome);
+				interrompa;
+			caso 2
+				pratoFish (x, contPes, valorPrato, y, nome);
+				interrompa;
+			caso 3
+				pratoGlut (x, contPes, valorPrato, y, nome);
+				interrompa;
+			caso 4
+				prato (x, contPes, valorPrato, y, nome);
+				interrompa;
+			outroCaso
+				escreval("Valor incorreto");
+			fimEscolha
+		senao
+			se(intol == 2)entao
+				prato (x, contPes, valorPrato, y, nome);
+			fimSe
+		fimSe
+	fimSe
+fimProcedimento
+
+procedimento pratoVeg (inteiro x,inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro vegP;
+	escreval("Recomendaçoes do Chef:");
+	escreval("1-Walnut and Lentil Bolognese-50.00R$");
+	escreval("2-Vegetable Soup-30.00R$");
+	escreval("3-Nenhuma das opçoes-0.00R$");
+	leia(vegP);
+	escolha(vegP)
+	caso 1
+		valorPrato = 50;
+		bebida (x, contPes, valorPrato, y, nome);
+		interrompa;
+	caso 2
+		valorPrato = 30;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 3
+		valorPrato = 0;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	fimEscolha
+fimProcedimento
+
+procedimento prato (inteiro x, inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro pratoN;
+	escreval("Recomendaçoes do Chef:");
+	escreval("1-Roast beef with red wine-75.00R$");
+	escreval("2-Chicken Piccata-59.00R$");
+	escreval("3-Nenhuma das opçoes-0.00R$");
+	leia(pratoN);
+	escolha(pratoN)
+	caso 1
+		valorPrato = 75;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 2
+		valorPrato = 59;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 3
+		valorPrato = 0;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	fimEscolha
+fimProcedimento
+
+procedimento pratoLac (inteiro x, inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro lacP;
+	escreval("Recomendaçoes do Chef:");
+	escreval("1-Lemon Chicken with Orzo-65.00R$");
+	escreval("2-Summer Garden Fish Tacos-45.00R$");
+	escreval("3-Nenhuma das opçoes-0.00R$");
+	leia(lacP);
+	escolha(lacP)
+	caso 1
+		valorPrato = 65;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 2
+		valorPrato = 45;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 3
+		valorPrato = 0;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	fimEscolha
+fimProcedimento
+
+procedimento pratoFish (inteiro x, inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro fishP;
+	escreval("Recomendaçoes do Chef:");
+	escreval("1-Prime rib com vinagrete de maçã-55.00R$");
+	escreval("2-Costela ao molho barbecue de framboesa-35.50R$");
+	escreval("3-Nenhuma das opçoes-0.00R$");
+	leia(fishP);
+	escolha(fishP)
+	caso 1
+		valorPrato = 55;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 2
+		valorPrato = 35.5;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 3
+		valorPrato = 0;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	fimEscolha
+fimProcedimento
+
+procedimento pratoGlut (inteiro x, inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro glutP;
+	escreval("Recomendaçoes do Chef:");
+	escreval("1-Ultimate Chicken Salad-50.00R$");
+	escreval("2-Best Baked Salmon-69.00R$");
+	escreval("3-Nenhuma das opçoes-0.00R$");
+	leia(glutP);
+	escolha(glutP)
+	caso 1
+		valorPrato = 50;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 2
+		valorPrato = 69;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	caso 3
+		valorPrato = 0;
+		bebida (x, contPes, valorPrato, y, nome );
+		interrompa;
+	fimEscolha
+fimProcedimento
+
+procedimento bebida (inteiro x, inteiro contPes, real valorPrato, real y, texto nome)
+	inteiro beb;
+	real retorno;
+	escreval("1-Aguá-2.00");
+	escreval("2-Sucos de fruta-7.00R$");
+	escreval("3-Refrigerantes-5.00R$");
+	escreval("4-Vinhos-15.00R$");
+
+	leia(beb);
+	escolha(beb)
+	caso 1
+		y = 2;
+		retorno = precFinal(x, contPes, valorPrato, y, nome);
+		limpaTela();
+		escreval("Mesa-",x);
+		escreval("Cliente-",nome);
+		escreval ("Total Individual a ser Pago R$",retorno::2);
+		escreval("----------------------------------------------------------------------"); 
+		interrompa;
+	caso 2
+		y = 7;
+		retorno = precFinal(x, contPes, valorPrato, y, nome);
+		limpaTela();
+		escreval("Mesa-",x);
+		escreval("Cliente-",nome);
+		escreval ("Total Individual a ser Pago R$",retorno::2);
+		escreval("----------------------------------------------------------------------"); 
+		interrompa;
+	caso 3
+		y = 5;
+		retorno = precFinal(x, contPes, valorPrato, y, nome);
+		limpaTela();
+		escreval("Mesa-",x);
+		escreval("Cliente-",nome);
+		escreval ("Total Individual a ser Pago R$",retorno::2);
+		escreval("----------------------------------------------------------------------"); 
+		interrompa;
+	caso 4
+		y = 15;
+		retorno = precFinal(x, contPes, valorPrato, y, nome);
+		limpaTela();
+		escreval("Mesa-",x);
+		escreval("Cliente-",nome);
+		escreval ("Total Individual a ser Pago R$",retorno::2);
+		escreval("----------------------------------------------------------------------"); 
+	fimEscolha
+fimProcedimento
+
+funcao real precFinal (inteiro x, inteiro contPes, real valorPrato, real y, texto nome)
+	real precF;
+	precF = y + valorPrato;
+	retorna precF;
+fimFuncao
